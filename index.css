@@ -111,6 +111,11 @@ span{
   color: white;
   font-size: 17px;
 }
+#userText{
+  color: white;
+  background: transparent;
+  font-size: 17px;
+}
 
 button{
   padding: 10px;

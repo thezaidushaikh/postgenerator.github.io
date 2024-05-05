@@ -16,7 +16,7 @@
                 id="profile_img"
                 src="default.jpg"
                 alt="Profile Picture"
-                style="cursor: pointer "
+                style="cursor: pointer"
               />
               <input
                 id="upload_img"
@@ -39,8 +39,7 @@
           </div>
         </div>
         <div class="post_text">
-          <p id="userText">Click here to enter text</p>
-          <input type="text" id="inputText" hidden />
+          <p id="userText" contenteditable="true">Click here to enter text</p>
         </div>
       </div>
     </div>
@@ -69,15 +68,12 @@
     });
 
     const userText = document.getElementById("userText");
-    const inputText = document.getElementById("inputText");
 
-    userText.addEventListener("click", function () {
-      inputText.hidden = false; // Make the input field visible
-      inputText.focus(); // Set focus to the input field for immediate typing
-      inputText.addEventListener("blur", function () {
-        inputText.hidden = true; // Hide the input field on blur (click outside)
-        userText.textContent = inputText.value; // Update paragraph content
-      });
+    userText.addEventListener("paste", function (event) {
+      event.preventDefault(); // Prevent default paste behavior
+      const pastedText = event.clipboardData.getData("text/plain"); // Get plain text
+      const cleanText = DOMPurify.sanitize(pastedText); // Sanitize text with DOMPurify
+      userText.innerHTML = cleanText; // Update paragraph content with sanitized text
     });
   </script>
 </html>
