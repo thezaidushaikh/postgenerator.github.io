@@ -50,6 +50,9 @@ body {
   width: 25%;
   height: inherit;
 }
+img{
+  object-fit: cover;
+}
 #profile_img{
   width: 93%;
   height: inherit;
@@ -84,8 +87,16 @@ body {
   font-size: 15px;
   font-weight: 400;
   margin-bottom: 20px;
+  margin-left: 1px;
 }
-
+.username_field{
+  display: flex;
+}
+span{
+  color: rgb(155, 155, 155);
+  font-size: 15px;
+  font-weight: 400;
+}
 .right{
   width: 50%;
   height: inherit;

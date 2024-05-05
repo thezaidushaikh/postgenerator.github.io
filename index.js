@@ -8,7 +8,7 @@ downloadButton.addEventListener("click", function () {
     const imageURL = canvas.toDataURL("image/png"); // Change format to "image/jpeg" for JPG
     const link = document.createElement("a");
     link.href = imageURL;
-    link.download = "styled-text.png"; // Change filename and extension as needed
+    link.download = "post.png"; // Change filename and extension as needed
     link.click();
   });
 });
