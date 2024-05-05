@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="main">
+      <div class="card">
+        <div class="top_header">
+          <div class="left">
+            <div class="image">
+              <img
+                id="profile_img"
+                src="default.jpg"
+                alt="Profile Picture"
+                style="cursor: pointer"
+              />
+              <input
+                id="upload_img"
+                type="file"
+                accept="image/*"
+                style="display: none"
+              />
+            </div>
+
+            <div class="info">
+              <input type="text" class="profile_name" value="Your Name" />
+              <input type="text" class="profile_handler" value="@username" />
+            </div>
+          </div>
+          <div class="right">
+            <div class="logo"></div>
+          </div>
+        </div>
+        <div class="post_text">
+          <p id="userText">Click here to enter text</p>
+          <input type="text" id="inputText" hidden />
+        </div>
+      </div>
+    </div>
+
+    <button id="download-button">Download Image</button>
+  </body>
+  <script src="index.js"></script>
+  <script src="html2canvas.min.js"></script>
+  <script>
+    const profileImg = document.getElementById("profile_img");
+    const uploadInput = document.getElementById("upload_img");
+
+    profileImg.addEventListener("click", function () {
+      uploadInput.click();
+    });
+
+    uploadInput.addEventListener("change", function (event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        profileImg.src = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    const userText = document.getElementById("userText");
+    const inputText = document.getElementById("inputText");
+
+    userText.addEventListener("click", function () {
+      inputText.hidden = false; // Make the input field visible
+      inputText.focus(); // Set focus to the input field for immediate typing
+      inputText.addEventListener("blur", function () {
+        inputText.hidden = true; // Hide the input field on blur (click outside)
+        userText.textContent = inputText.value; // Update paragraph content
+      });
+    });
+  </script>
+</html>
